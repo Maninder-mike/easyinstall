@@ -14,15 +14,32 @@ function _help() {
     # echo $PROJECT
     # _arch
     # _debian
-    . test.sh
+    _fedora
 }
 
 function _arch() {
-    . arch.sh
+
+    sudo pacman -Syyuu && \
+
+    sudo -S pacman -S neovim vifm pulseaudio pamixer htop \
+    tlp tlp-rdw numlockx base-devel xscreensaver firefox cups \
+    git go nodejs npm nautilus evince nomacs system-config-printer \
+    vlc sqlite sqlitebrowser networkmanager 
 }
 
 function _debian() {
-    . debian.sh
+    sudo -S apt install fish terminator sqlite3 sqlitebrowser \
+    python3 python3-pip git nodejs npm tlp tlp-rdw gnome-tweak-tool \
+    ubuntu-restricted-extras neovim vifm 
+}
+
+
+function _fedora() {
+    sudo dnf update && \
+    sudo dnf install git nodejs npm fish vlc sqlite sqlitebrowser && \
+    sudo npm i yarn -g && \
+    sudo chsh -s /usr/bin/fish && \
+    sudo dnf autoremove
 }
 
 _help
