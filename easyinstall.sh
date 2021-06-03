@@ -5,16 +5,26 @@ PROJECT_NAME="easyinstall"
 PROJECT="https://github.com/Maninder-mike/$PROJECT_NAME"
 
 Node_name=$(uname -n)
-echo $Node_name
+# echo $Node_name
 
 function _help() {
-    echo "This is EasyInstall for single command install essential app for your system: "
+    # echo "This is EasyInstall for single command install essential app for your system: "
     # echo $PROJECT_NAME
     # echo $VER
     # echo $PROJECT
+    
+    # if [$Node_name = "fedora"];then
+    # echo "this run fedora" 
+    # fi
+
+    case $Node_name in
+    "fedora")
+    fedora;
+    esac
+
     # _arch
     # _debian
-    _fedora
+    # _fedora
 }
 
 function _arch() {
@@ -34,9 +44,12 @@ function _debian() {
 }
 
 
-function _fedora() {
+function fedora() {
     sudo dnf update && \
-    sudo dnf install git nodejs npm fish vlc sqlite sqlitebrowser && \
+    sudo rpm -Uvh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
+    sudo rpm -Uvh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    sudo dnf install git nodejs npm fish vlc sqlite sqlitebrowser tlp tlp-rdw && \
+    sudo systemctl enable tlp && \
     sudo npm i yarn -g && \
     sudo chsh -s /usr/bin/fish && \
     sudo dnf autoremove
