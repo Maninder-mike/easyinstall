@@ -46,8 +46,8 @@ function _debian() {
 
 function fedora() {
     sudo dnf update && \
-    sudo rpm -Uvh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm && \
-    sudo rpm -Uvh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
+    sudo rpm -Uvh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm || \
+    sudo rpm -Uvh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm || \
     sudo dnf install git nodejs npm fish vlc sqlite sqlitebrowser tlp tlp-rdw && \
     sudo systemctl enable tlp && \
     sudo npm i yarn -g && \
