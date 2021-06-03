@@ -8,7 +8,7 @@ Node_name=$(uname -n)
 echo $Node_name
 
 function _help() {
-    # echo "this is EasyInstall for single command install essential app for your system: "
+    echo "This is EasyInstall for single command install essential app for your system: "
     # echo $PROJECT_NAME
     # echo $VER
     # echo $PROJECT
