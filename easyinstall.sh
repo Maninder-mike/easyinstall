@@ -19,18 +19,11 @@ function _help() {
     case $Node_name in
     "fedora")
         _fedora
-        ;;
     "debian")
         _debian
-        ;;
     "arch")
         _arch
-        ;;
     esac
-
-    # _arch
-    # _debian
-    # _fedora
 }
 
 function _arch() {
@@ -56,7 +49,7 @@ function _fedora() {
         sudo systemctl enable tlp &&
         sudo npm i yarn -g &&
         sudo chsh -s /usr/bin/fish && chsh -s /usr/bin/fish &&
-        sudo dnf autoremove
+        sudo dnf autoremove -y
 }
 
 _help
